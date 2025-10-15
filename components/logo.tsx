@@ -1,46 +1,37 @@
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center ${className}`}>
-      {/* "Chopst" text - tight spacing */}
       <span className="text-3xl font-bold text-foreground font-sans tracking-tight">Chopst</span>
 
-      {/* Shopping cart with leaves bulging out - representing a full cart */}
+      {/* Simple shopping cart with ONE small leaf */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 40 48"
-        className="h-9 w-9 -mx-1"
+        viewBox="0 0 32 32"
+        className="h-8 w-8 -mx-0.5"
         role="img"
-        aria-label="Shopping cart with fresh produce"
+        aria-label="Shopping cart"
       >
-        {/* Shopping cart body */}
+        {/* Cart basket - simple clean lines */}
         <path
-          d="M 8 18 L 10 18 L 13 36 L 32 36 L 35 20 L 11 20"
-          stroke="#10b981"
-          strokeWidth="2.5"
+          d="M 6 10 L 8 10 L 10 22 L 26 22 L 28 12 L 9 12"
+          stroke="#2ECC71"
+          strokeWidth="2"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
 
+        {/* Cart handle */}
+        <path d="M 8 10 L 10 6" stroke="#2ECC71" strokeWidth="2" fill="none" strokeLinecap="round" />
+
         {/* Cart wheels */}
-        <circle cx="16" cy="42" r="2.5" fill="#10b981" />
-        <circle cx="29" cy="42" r="2.5" fill="#10b981" />
+        <circle cx="13" cy="26" r="1.5" fill="#2ECC71" />
+        <circle cx="23" cy="26" r="1.5" fill="#2ECC71" />
 
-        {/* Leaves bulging out of the cart - half inside, half outside */}
-        {/* Left leaf */}
-        <path d="M 16 20 Q 14 16 14 12 Q 14 8 16 6 Q 18 8 18 12 Q 18 16 16 20 Z" fill="#10b981" opacity="0.95" />
-        <line x1="16" y1="6" x2="16" y2="20" stroke="#059669" strokeWidth="0.8" />
-
-        {/* Center leaf - taller, sticking out more */}
-        <path d="M 22 22 Q 20 17 20 11 Q 20 6 22 4 Q 24 6 24 11 Q 24 17 22 22 Z" fill="#10b981" />
-        <line x1="22" y1="4" x2="22" y2="22" stroke="#059669" strokeWidth="0.8" />
-
-        {/* Right leaf */}
-        <path d="M 28 20 Q 26 16 26 12 Q 26 8 28 6 Q 30 8 30 12 Q 30 16 28 20 Z" fill="#10b981" opacity="0.95" />
-        <line x1="28" y1="6" x2="28" y2="20" stroke="#059669" strokeWidth="0.8" />
+        <path d="M 21 12 Q 22.5 9 24 6 Q 25.5 9 24 12 Z" fill="#2ECC71" />
+        <line x1="24" y1="6" x2="24" y2="12" stroke="#1a9954" strokeWidth="0.8" />
       </svg>
 
-      {/* "ck" text - tight spacing */}
       <span className="text-3xl font-bold text-foreground font-sans tracking-tight">ck</span>
     </div>
   )
@@ -50,32 +41,30 @@ export function LogoIcon({ className = "" }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 40 48"
+      viewBox="0 0 32 32"
       className={`w-full h-full ${className}`}
       role="img"
       aria-label="Chopstack icon"
     >
-      {/* Shopping cart */}
+      {/* Cart basket */}
       <path
-        d="M 8 18 L 10 18 L 13 36 L 32 36 L 35 20 L 11 20"
-        stroke="#10b981"
-        strokeWidth="2.5"
+        d="M 6 10 L 8 10 L 10 22 L 26 22 L 28 12 L 9 12"
+        stroke="#2ECC71"
+        strokeWidth="2"
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="16" cy="42" r="2.5" fill="#10b981" />
-      <circle cx="29" cy="42" r="2.5" fill="#10b981" />
 
-      {/* Leaves bulging out */}
-      <path d="M 16 20 Q 14 16 14 12 Q 14 8 16 6 Q 18 8 18 12 Q 18 16 16 20 Z" fill="#10b981" opacity="0.95" />
-      <line x1="16" y1="6" x2="16" y2="20" stroke="#059669" strokeWidth="0.8" />
+      {/* Cart handle */}
+      <path d="M 8 10 L 10 6" stroke="#2ECC71" strokeWidth="2" fill="none" strokeLinecap="round" />
 
-      <path d="M 22 22 Q 20 17 20 11 Q 20 6 22 4 Q 24 6 24 11 Q 24 17 22 22 Z" fill="#10b981" />
-      <line x1="22" y1="4" x2="22" y2="22" stroke="#059669" strokeWidth="0.8" />
+      {/* Wheels */}
+      <circle cx="13" cy="26" r="1.5" fill="#2ECC71" />
+      <circle cx="23" cy="26" r="1.5" fill="#2ECC71" />
 
-      <path d="M 28 20 Q 26 16 26 12 Q 26 8 28 6 Q 30 8 30 12 Q 30 16 28 20 Z" fill="#10b981" opacity="0.95" />
-      <line x1="28" y1="6" x2="28" y2="20" stroke="#059669" strokeWidth="0.8" />
+      <path d="M 21 12 Q 22.5 9 24 6 Q 25.5 9 24 12 Z" fill="#2ECC71" />
+      <line x1="24" y1="6" x2="24" y2="12" stroke="#1a9954" strokeWidth="0.8" />
     </svg>
   )
 }
