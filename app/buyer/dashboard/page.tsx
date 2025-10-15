@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { StatusBadge } from "@/components/status-badge"
-import { Wallet, ShoppingBag, Package, TrendingUp, Plus, Eye } from "lucide-react"
+import { Wallet, ShoppingBag, Package, TrendingUp, Eye } from "lucide-react"
 import Link from "next/link"
 import type { Order } from "@/lib/types"
 
@@ -96,10 +96,10 @@ export default async function BuyerDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-primary">{formatPrice(walletBalance)}</div>
-                <Button size="sm" className="mt-3" asChild>
-                  <Link href="/buyer/wallet">
-                    <Plus className="h-4 w-4 mr-1" />
-                    Fund Wallet
+                <Button size="sm" className="mt-3 bg-transparent" variant="outline" asChild>
+                  <Link href="/wallet">
+                    <Wallet className="h-4 w-4 mr-1" />
+                    View Wallet
                   </Link>
                 </Button>
               </CardContent>
@@ -160,7 +160,7 @@ export default async function BuyerDashboard() {
                   </Link>
                 </Button>
                 <Button variant="outline" className="h-auto py-4 flex-col gap-2 bg-transparent" asChild>
-                  <Link href="/buyer/wallet">
+                  <Link href="/wallet">
                     <Wallet className="h-6 w-6" />
                     <span>Manage Wallet</span>
                   </Link>

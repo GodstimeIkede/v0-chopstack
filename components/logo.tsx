@@ -3,7 +3,7 @@ export function Logo({ className = "" }: { className?: string }) {
     <div className={`flex items-center ${className}`}>
       <span className="text-3xl font-bold text-foreground font-sans tracking-tight">Chopst</span>
 
-      {/* Simple shopping cart with ONE small leaf */}
+      {/* Simple shopping cart with ONE leaf sticking out */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 32 32"
@@ -28,8 +28,8 @@ export function Logo({ className = "" }: { className?: string }) {
         <circle cx="13" cy="26" r="1.5" fill="#2ECC71" />
         <circle cx="23" cy="26" r="1.5" fill="#2ECC71" />
 
-        <path d="M 21 12 Q 22.5 9 24 6 Q 25.5 9 24 12 Z" fill="#2ECC71" />
-        <line x1="24" y1="6" x2="24" y2="12" stroke="#1a9954" strokeWidth="0.8" />
+        <path d="M 20 12 Q 22 8 24 4 Q 26 8 24 12 Z" fill="#2ECC71" />
+        <line x1="24" y1="4" x2="24" y2="12" stroke="#1a9954" strokeWidth="1" />
       </svg>
 
       <span className="text-3xl font-bold text-foreground font-sans tracking-tight">ck</span>
@@ -63,8 +63,8 @@ export function LogoIcon({ className = "" }: { className?: string }) {
       <circle cx="13" cy="26" r="1.5" fill="#2ECC71" />
       <circle cx="23" cy="26" r="1.5" fill="#2ECC71" />
 
-      <path d="M 21 12 Q 22.5 9 24 6 Q 25.5 9 24 12 Z" fill="#2ECC71" />
-      <line x1="24" y1="6" x2="24" y2="12" stroke="#1a9954" strokeWidth="0.8" />
+      <path d="M 20 12 Q 22 8 24 4 Q 26 8 24 12 Z" fill="#2ECC71" />
+      <line x1="24" y1="4" x2="24" y2="12" stroke="#1a9954" strokeWidth="1" />
     </svg>
   )
 }
