@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { User, LogOut, Settings, LayoutDashboard } from "lucide-react"
+import { User, LogOut, Settings, LayoutDashboard, Wallet, ShoppingBag } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -61,6 +61,18 @@ export function UserMenu() {
     }
   }
 
+  const handleWallet = () => {
+    router.push("/wallet")
+  }
+
+  const handleOrders = () => {
+    if (profile?.user_type === "vendor") {
+      router.push("/vendor/orders")
+    } else {
+      router.push("/buyer/orders")
+    }
+  }
+
   if (!profile) return null
 
   return (
@@ -82,6 +94,14 @@ export function UserMenu() {
         <DropdownMenuItem onClick={handleDashboard}>
           <LayoutDashboard className="mr-2 h-4 w-4" />
           Dashboard
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleWallet}>
+          <Wallet className="mr-2 h-4 w-4" />
+          Wallet
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleOrders}>
+          <ShoppingBag className="mr-2 h-4 w-4" />
+          Orders
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Settings className="mr-2 h-4 w-4" />
