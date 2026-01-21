@@ -20,8 +20,7 @@ export default function TermsPage() {
               <h2 className="text-2xl font-bold text-primary">1. Platform Use</h2>
               <p className="text-muted-foreground leading-relaxed">
                 By accessing and using Chopstack, you agree to be bound by these Terms and Conditions. The platform
-                connects buyers with verified vendors and farmers for the purchase of pre-curated bundles. Users must be
-                at least 18 years old to use this platform.
+                connects buyers with verified vendors and farmers for the purchase of pre-curated bundles.
               </p>
             </section>
 
@@ -55,7 +54,7 @@ export default function TermsPage() {
                   <strong>Commission:</strong>
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>1% commission charged on each successful sale</li>
+                  <li>5% commission charged on each successful sale</li>
                   <li>Commission is automatically deducted from vendor payout</li>
                 </ul>
                 <p className="pt-3">
