@@ -7,14 +7,13 @@ import { ThemeToggle } from "./theme-toggle"
 import { UserMenu } from "./user-menu"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
-import { useState, useEffect } from "react"
-import { createClient } from "@/lib/supabase/client"
+import { useState } from "react"
+import { useAuth } from "@/lib/auth-context"
 
 export function Navigation() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const { isAuthenticated, isLoading } = useAuth()
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -22,29 +21,6 @@ export function Navigation() {
     { href: "/terms", label: "Terms" },
     { href: "/contact", label: "Contact" },
   ]
-
-  useEffect(() => {
-    const supabase = createClient()
-
-    async function checkAuth() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
-      setIsAuthenticated(!!user)
-      setIsLoading(false)
-    }
-
-    checkAuth()
-
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAuthenticated(!!session)
-    })
-
-    return () => subscription.unsubscribe()
-  }, [])
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

@@ -1,6 +1,7 @@
 "use client"
 
 import { createClient } from "@/lib/supabase/client"
+import { useAuth } from "@/lib/auth-context"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -24,30 +25,26 @@ export function UserMenu() {
   const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
+  const { user, signOut } = useAuth()
   const supabase = createClient()
 
   useEffect(() => {
-    if (!supabase) {
+    if (!user || !supabase) {
+      setProfile(null)
       setIsLoading(false)
       return
     }
 
     async function loadProfile() {
       try {
-        const {
-          data: { user },
-        } = await supabase.auth.getUser()
+        const { data } = await supabase
+          .from("profiles")
+          .select("user_type, full_name, email")
+          .eq("id", user.id)
+          .single()
 
-        if (user) {
-          const { data } = await supabase
-            .from("profiles")
-            .select("user_type, full_name, email")
-            .eq("id", user.id)
-            .single()
-
-          if (data) {
-            setProfile(data)
-          }
+        if (data) {
+          setProfile(data)
         } else {
           setProfile(null)
         }
@@ -59,25 +56,12 @@ export function UserMenu() {
     }
 
     loadProfile()
-
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) {
-        loadProfile()
-      } else {
-        setProfile(null)
-        setIsLoading(false)
-      }
-    })
-
-    return () => subscription.unsubscribe()
-  }, [supabase])
+  }, [user, supabase])
 
   const handleLogout = async () => {
     try {
-      await supabase.auth.signOut()
+      console.log("[v0] UserMenu logout initiated")
+      await signOut()
       setProfile(null)
       router.push("/")
       router.refresh()

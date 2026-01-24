@@ -5,6 +5,7 @@ import { Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { AuthProvider } from "@/lib/auth-context"
 import { Suspense } from "react"
 import "./globals.css"
 
@@ -33,11 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Navigation />
-          <main className="min-h-[calc(100vh-4rem)]">{children}</main>
-          <Footer />
-        </Suspense>
+        <AuthProvider>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Navigation />
+            <main className="min-h-[calc(100vh-4rem)]">{children}</main>
+            <Footer />
+          </Suspense>
+        </AuthProvider>
         <Analytics />
       </body>
     </html>
