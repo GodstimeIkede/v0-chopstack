@@ -22,35 +22,68 @@ interface Profile {
 
 export function UserMenu() {
   const [profile, setProfile] = useState<Profile | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
   const supabase = createClient()
 
   useEffect(() => {
+    if (!supabase) {
+      setIsLoading(false)
+      return
+    }
+
     async function loadProfile() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
 
-      if (user) {
-        const { data } = await supabase
-          .from("profiles")
-          .select("user_type, full_name, email")
-          .eq("id", user.id)
-          .single()
+        if (user) {
+          const { data } = await supabase
+            .from("profiles")
+            .select("user_type, full_name, email")
+            .eq("id", user.id)
+            .single()
 
-        if (data) {
-          setProfile(data)
+          if (data) {
+            setProfile(data)
+          }
+        } else {
+          setProfile(null)
         }
+      } catch (error) {
+        console.error("[v0] Error loading profile:", error)
+        setProfile(null)
       }
+      setIsLoading(false)
     }
 
     loadProfile()
+
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        loadProfile()
+      } else {
+        setProfile(null)
+        setIsLoading(false)
+      }
+    })
+
+    return () => subscription.unsubscribe()
   }, [supabase])
 
   const handleLogout = async () => {
-    await supabase.auth.signOut()
-    router.push("/")
-    router.refresh()
+    try {
+      await supabase.auth.signOut()
+      setProfile(null)
+      router.push("/")
+      router.refresh()
+    } catch (error) {
+      console.error("[v0] Logout error:", error)
+    }
   }
 
   const handleDashboard = () => {
@@ -73,7 +106,7 @@ export function UserMenu() {
     }
   }
 
-  if (!profile) return null
+  if (!profile || isLoading) return null
 
   return (
     <DropdownMenu>
